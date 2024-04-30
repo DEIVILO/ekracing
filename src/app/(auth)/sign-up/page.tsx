@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import { Icons } from '@/components/Icons'
 import { Button, buttonVariants } from '@/components/ui/button'
@@ -11,21 +11,19 @@ import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { AuthCredentialsValidator, TAuthCredentialsValidator } from '@/lib/validators/account-credentials-validator'
 import { trpc } from '@/trpc/client'
-import { toast } from 'sonner'
-import { ZodError } from 'zod'
-import { useRouter } from 'next/navigation'
 
-const Page =() => {
-    const {register, handleSubmit, formState:{errors}} = useForm<TAuthCredentialsValidator>({
+
+const Page = () => {
+    const {register, handleSubmit, formState:{errors},} = useForm<TAuthCredentialsValidator>({
         resolver: zodResolver(AuthCredentialsValidator)
     })
 
-    const { data } = trpc.anyApiRoute.useQuery()
-    console.log(data)
+    const {mutate, isLoading} = trpc.auth.createPayloadUser.useMutation({
+
+    })
 
     const onSubmit = ({email, password}: TAuthCredentialsValidator) => {
-        //send data to server
-        
+        mutate({email, password})
     }
 
     return (
@@ -63,6 +61,7 @@ const Page =() => {
                                 <Label htmlFor="password">Password</Label>
                                 <Input 
                                 {...register("password")}
+                                type="password"
                                 className={cn({
                                     "focus-visible:ring-red-500": errors.password,
                                 })}
