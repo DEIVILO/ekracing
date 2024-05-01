@@ -38,3 +38,4 @@ next-env.d.ts
 #tsconfig
 tsconfig.json
 tsconfig.server.json
+.env
