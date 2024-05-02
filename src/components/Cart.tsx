@@ -7,14 +7,18 @@ import { formatPrice } from "@/lib/utils"
 import Link from "next/link"
 import { buttonVariants } from "./ui/button"
 import Image from "next/image"
+import { useCart } from "@/hooks/use-cart"
 
 
 
 const Cart = () => {
+    const { items } = useCart()
 
-        const itemCount = 0
+    const itemCount = items.length
 
-        const packagingCosts = 3
+    const cartTotal = items.reduce((total, {product}) => total + product.price, 0)
+
+    const packagingCosts = 3
 
     return <Sheet>
         <SheetTrigger className="group -m-2 flex items-center p-2">
@@ -46,7 +50,7 @@ const Cart = () => {
                             </div>
                             <div className="flex">
                                 <span className="flex-1">Total</span>
-                                <span>{formatPrice(packagingCosts)}</span>
+                                <span>{formatPrice(cartTotal + packagingCosts)}</span>
                             </div>
                         </div>
 

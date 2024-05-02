@@ -3,6 +3,7 @@ import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Gem, Leaf, Truck } from "lucide-react";
+import ProductReel from "@/components/ProductReel";
 
 
 const perks = [
@@ -39,7 +40,7 @@ export default function Home() {
       </div>
     </div>
 
-    {/*TODO:LIST PRODUCTS*/}
+    <ProductReel query={{sort: "desc", limit: 4}} title="Newest additions" href="/products" />
   </MaxWidthWrapper>
 
   <section className="border-t border-gray-200 bg-gray-50">
