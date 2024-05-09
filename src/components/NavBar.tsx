@@ -14,10 +14,10 @@ const NavBar = async () => {
 
 
     return (
-        <div className="bg-white sticky z-50 top-0 inset-x-0 h-16">
+        <div className="bg-white sticky z-50 top-0 inset-x-0 h-16 border-b border-gray-200">
             <header className="relative bg-white">
                 <MaxWidthWrapper >
-                    <div className="border-b border-gray-200">
+                    <div className="">
                         <div className="flex h-16 items-center">
 
                             {/* TODO:MOBILE nav */}
